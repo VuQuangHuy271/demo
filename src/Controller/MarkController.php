@@ -29,6 +29,18 @@ class MarkController extends AbstractController
         $this->addFlash('Success!!', 'Mark is deleted');
         return $this->redirectToRoute('mark_index');
     }
+    #[Route('/detail/{id}', name: 'mark_detail')]
+    public function markDetail(ManagerRegistry $registry, $id)
+    {
+        $mark = $registry->getRepository(Mark::class)->find($id);
+        if ($mark == null) {
+            $this->addFlash('error', 'Mark not found');
+            return $this->redirectToRoute('mark_index');
+        }
+        return $this->render('mark/detail.html.twig', [
+            'mark' => $mark
+        ]);
+    }
     #[Route('/add', name: 'mark_add')]
     public function markAdd(Request $request, ManagerRegistry $registry){
         $mark = new Mark();
@@ -38,7 +50,7 @@ class MarkController extends AbstractController
             $manager = $registry->getManager();
             $manager -> persist($mark);
             $manager -> flush();
-            $this->addFlash('Success', 'Add subject successfull !!');
+            $this->addFlash('Success', 'Add mark successfull !!');
             return $this->redirectToRoute("mark_index");
         }
         return $this->renderForm('mark/add.html.twig',

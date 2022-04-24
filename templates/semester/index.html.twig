@@ -15,7 +15,11 @@
     {% for semester in semesters %}
     <tr>
         <td>{{semester.id}}</td>
-        <td>{{semester.name}}</td>
+        <td>
+            <a style="text-decoration: none" href="{{path('semester_detail',{'id':semester.id})}}">
+                        {{semester.name}}
+            </a>
+        </td>
         <td>{{semester.dateStart | date('d/m/Y')}}</td>
         <td>{{semester.dateEnd | date('d/m/Y')}}</td>
         <td>

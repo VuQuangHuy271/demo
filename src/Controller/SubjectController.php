@@ -29,6 +29,18 @@ class SubjectController extends AbstractController
         $this->addFlash('Success!!', 'Subject is deleted');
         return $this->redirectToRoute('subject_index');
     }
+    #[Route('/detail/{id}', name: 'subject_detail')]
+    public function subjectDetail(ManagerRegistry $registry, $id)
+    {
+        $subject = $registry->getRepository(Subject::class)->find($id);
+        if ($subject == null) {
+            $this->addFlash('Error', 'Genre not found');
+            return $this->redirectToRoute('genre_index');
+        }
+        return $this->render('subject/detail.html.twig', [
+            'subject' => $subject
+        ]);
+    }
     #[Route('/add', name: 'subject_add')]
     public function subjectAdd(Request $request, ManagerRegistry $registry){
         $subject = new Subject();

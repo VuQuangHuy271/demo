@@ -22,6 +22,18 @@ class SemesterController extends AbstractController
             'semesters' => $semesters
         ]);
     }
+    #[Route('/detail/{id}', name: 'semester_detail')]
+    public function semesterDetail(ManagerRegistry $registry, $id)
+    {
+        $semester = $registry->getRepository(Semester::class)->find($id);
+        if ($semester == null) {
+            $this->addFlash('error', 'Semester not found');
+            return $this->redirectToRoute('semester');
+        }
+        return $this->render('semester/detail.html.twig', [
+            'semester' => $semester
+        ]);
+    }
     #[Route('/delete/{id}', name: 'semester_delete')]
     public function semesterDelete(ManagerRegistry $registry, $id){
         $semesters = $registry->getRepository(Semester::class)->find($id);
