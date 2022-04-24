@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="container-fluid col-md-10 text-center">
+    <h2 class = "text text-success">Semester</h2>
+    <a class="btn btn-primary mt-5" href="{{path('semester_add')}}">ADD</a>
+    <table class="table table-hover">
+    <tr>
+        <th>ID</th>
+        <th>Semester Name</th>
+        <th>Date Start</th>
+        <th>Date End</th>
+        <th>Menu</th>
+    </tr>
+    {% for semester in semesters %}
+    <tr>
+        <td>{{semester.id}}</td>
+        <td>{{semester.name}}</td>
+        <td>{{semester.dateStart | date('d/m/Y')}}</td>
+        <td>{{semester.dateEnd | date('d/m/Y')}}</td>
+        <td>
+            <a class="btn btn-warning" href="">Edit</a>
+            <a class="btn btn-danger" href="{{path('semester_delete',{'id':semester.id})}}"
+            onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </table>
+    
+
+</div>
+{% endblock %}
