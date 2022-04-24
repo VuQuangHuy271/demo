@@ -27,6 +27,7 @@ class Semester
     #[ORM\OneToMany(mappedBy: 'semester', targetEntity: Mark::class)]
     private $marks;
 
+
     public function __construct()
     {
         $this->marks = new ArrayCollection();

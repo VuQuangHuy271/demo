@@ -3,8 +3,8 @@
 namespace App\DataFixtures;
 
 use App\Entity\Mark;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 
 class MarkFixtures extends Fixture
 {
@@ -12,7 +12,8 @@ class MarkFixtures extends Fixture
     {
         for($i = 0; $i < 10; $i++){
             $mark = new Mark();
-            $mark->setMark(rand(1, 10));
+            $mark->setAssignment1(rand(1, 10));
+            $mark->setAssignment2(rand(1, 10));
             $manager->persist($mark);
         }
 
