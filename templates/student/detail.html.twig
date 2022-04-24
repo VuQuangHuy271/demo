@@ -9,13 +9,13 @@
         </div>
         <div class="col">
             <h5 class="text-info">Date: {{student.dateOfBirth | date('d/m/Y') }}</h5>
-            {# <h5 class="text-warning">Genre: 
-                {% if book.genre != null %}
-                <a class="text text-success" href="{{ path('genre_detail' , {'id' : book.genre.id})}}">
-                    {{ book.genre.name }}
+            <h5 class="text-warning">Course: 
+                {% if student.course != null %}
+                <a class="text text-success" href="{{ path('course_detail' , {'id' : student.course.id})}}">
+                    {{ student.course.name }}
                 </a>             
                 {% endif %}
-            </h5> #}
+            </h5>
             <h5 class="text-secondary">Phone: {{ student.phone}}</h5>
             <h5 class="text-secondary">Email: {{ student.email }}</h5>
         </div>

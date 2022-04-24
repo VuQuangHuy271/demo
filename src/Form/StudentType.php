@@ -2,9 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\Course;
 use App\Entity\Student;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -19,7 +21,7 @@ class StudentType extends AbstractType
             [
                 'label' => 'Name',
                 'attr' => [
-                    'placeholder' => 'Enter your name',
+                    'placeholder' => 'Enter Your Name',
                 ],
                 'required' => true,
             ])
@@ -27,6 +29,9 @@ class StudentType extends AbstractType
                 ->add('Gender', TextType::class,[
                     'label'=> 'Gender',
                     'required' => true,
+                    'attr' => [
+                        'placeholder' => 'Enter your Gender',
+                    ],
 
                 ])
                 ->add('DateOfBirth', DateType::class,
@@ -44,6 +49,16 @@ class StudentType extends AbstractType
                 [
                     'label' => 'Email',
                     'required' => true,
+                ])
+
+                ->add('Course', EntityType::class,
+                [
+                    'label' => 'Course name',
+                    'class' => Course::class,
+                    'required' => true,
+                    'choice_label' => 'name',
+                    'multiple' => false,
+                    'expanded' => false,
                 ])
                 ->add('Image', TextType::class,
                 [

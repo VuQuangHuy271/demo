@@ -93,6 +93,19 @@ class StudentController extends AbstractController
         ]);
     }
 
+
+    // #[Route('/filter/{id}', name: 'student_filter')]
+    // public function filter ($id, ManagerRegistry $registry) {
+    //     $course = $registry->getRepository(Course::class)->findAll();
+    //     $course = $registry->getRepository(Course::class)->find($id);
+    //     $student = $course->getStudent();
+    //     return $this->render("student/index.html.twig",
+    //                             [
+    //                                     'student' => $student,
+    //                                     'course' => $course
+    //                             ]);
+    // }
+
     // #[Route('/search', name: 'student_search')]
     // public function search (Request $request, StudentRepository $studentRepository, ManagerRegistry $registry) {
     //     $student = $registry->getRepository(Student::class)->findAll();

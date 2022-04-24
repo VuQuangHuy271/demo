@@ -39,6 +39,9 @@ class Student
     #[ORM\OneToMany(mappedBy: 'student', targetEntity: Mark::class)]
     private $marks;
 
+    #[ORM\ManyToOne(targetEntity: Course::class, inversedBy: 'students')]
+    private $course;
+
 
     public function __construct()
     {
@@ -160,6 +163,18 @@ class Student
                 $mark->setStudent(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCourse(): ?Course
+    {
+        return $this->course;
+    }
+
+    public function setCourse(?Course $course): self
+    {
+        $this->course = $course;
 
         return $this;
     }
