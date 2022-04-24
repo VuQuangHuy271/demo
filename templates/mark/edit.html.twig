@@ -1,0 +1,10 @@
+{% form_theme markForm 'bootstrap_5_layout.html.twig' %}
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class = "container-fluid col-md-10 text-center">
+    <h2>Edit Mark</h2>
+    {{ form_start(markForm) }}
+    {{ form_end(markForm) }}
+</div>
+{% endblock %}

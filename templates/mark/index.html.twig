@@ -3,7 +3,7 @@
 {% block body %}
 <div class="container-fluid col-md-10 text-center">
     <h2 class = "text text-success">Mark Report</h2>
-    <a class="btn btn-primary mt-5" href="{{path('semester_add')}}">ADD</a>
+    <a class="btn btn-primary mt-5" href="{{path('mark_add')}}">ADD</a>
     <table class="table table-hover">
     <tr>
         <th>ID</th>
@@ -17,14 +17,14 @@
     {% for mark in marks %}
     <tr>
         <td>{{mark.id}}</td>
-        <td>{{mark.student.name}}</td>
-        <td>{{mark.subject.name}}</td>
-        <td>{{mark.semester.name}}</td>
+        <td></td>
+        <td></td>
+        <td></td>
         <td>{{mark.assignment1}}</td>
         <td>{{mark.assignment2}}</td>
         <td>
-            <a class="btn btn-warning" href="{{path('semester_edit', {'id': semester.id})}}">Edit</a>
-            <a class="btn btn-danger" href="{{path('semester_delete',{'id':semester.id})}}"
+            <a class="btn btn-warning" href="{{path('mark_edit', {'id': mark.id})}}">Edit</a>
+            <a class="btn btn-danger" href="{{path('mark_delete',{'id':mark.id})}}"
             onclick="return confirm('Are you sure?')">Delete</a>
         </td>
     </tr>
