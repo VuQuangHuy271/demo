@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\StudentRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: StudentRepository::class)]
@@ -33,6 +35,14 @@ class Student
 
     #[ORM\ManyToOne(targetEntity: Specialized::class, inversedBy: 'student')]
     private $specialized;
+
+    #[ORM\OneToMany(mappedBy: 'student', targetEntity: Mark::class)]
+    private $marks;
+
+    public function __construct()
+    {
+        $this->marks = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -119,6 +129,36 @@ class Student
     public function setSpecialized(?Specialized $specialized): self
     {
         $this->specialized = $specialized;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Mark>
+     */
+    public function getMarks(): Collection
+    {
+        return $this->marks;
+    }
+
+    public function addMark(Mark $mark): self
+    {
+        if (!$this->marks->contains($mark)) {
+            $this->marks[] = $mark;
+            $mark->setStudent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMark(Mark $mark): self
+    {
+        if ($this->marks->removeElement($mark)) {
+            // set the owning side to null (unless already changed)
+            if ($mark->getStudent() === $this) {
+                $mark->setStudent(null);
+            }
+        }
 
         return $this;
     }

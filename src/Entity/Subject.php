@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\SemesterRepository;
+use App\Repository\SubjectRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: SemesterRepository::class)]
-class Semester
+#[ORM\Entity(repositoryClass: SubjectRepository::class)]
+class Subject
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -18,13 +18,13 @@ class Semester
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
-    #[ORM\Column(type: 'date')]
-    private $date_start;
+    #[ORM\ManyToOne(targetEntity: Teacher::class, inversedBy: 'subjects')]
+    private $teacher;
 
-    #[ORM\Column(type: 'date')]
-    private $date_end;
+    #[ORM\Column(type: 'string', length: 255)]
+    private $description;
 
-    #[ORM\OneToMany(mappedBy: 'semester', targetEntity: Mark::class)]
+    #[ORM\OneToMany(mappedBy: 'subject', targetEntity: Mark::class)]
     private $marks;
 
     public function __construct()
@@ -49,26 +49,26 @@ class Semester
         return $this;
     }
 
-    public function getDateStart(): ?\DateTimeInterface
+    public function getTeacher(): ?Teacher
     {
-        return $this->date_start;
+        return $this->teacher;
     }
 
-    public function setDateStart(\DateTimeInterface $date_start): self
+    public function setTeacher(?Teacher $teacher): self
     {
-        $this->date_start = $date_start;
+        $this->teacher = $teacher;
 
         return $this;
     }
 
-    public function getDateEnd(): ?\DateTimeInterface
+    public function getDescription(): ?string
     {
-        return $this->date_end;
+        return $this->description;
     }
 
-    public function setDateEnd(\DateTimeInterface $date_end): self
+    public function setDescription(string $description): self
     {
-        $this->date_end = $date_end;
+        $this->description = $description;
 
         return $this;
     }
@@ -85,7 +85,7 @@ class Semester
     {
         if (!$this->marks->contains($mark)) {
             $this->marks[] = $mark;
-            $mark->setSemester($this);
+            $mark->setSubject($this);
         }
 
         return $this;
@@ -95,8 +95,8 @@ class Semester
     {
         if ($this->marks->removeElement($mark)) {
             // set the owning side to null (unless already changed)
-            if ($mark->getSemester() === $this) {
-                $mark->setSemester(null);
+            if ($mark->getSubject() === $this) {
+                $mark->setSubject(null);
             }
         }
 
