@@ -4,12 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Student;
 use App\Form\StudentType;
+use App\Repository\StudentRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+#[Route("/student")]
 class StudentController extends AbstractController
 {
     #[Route('/', name: 'student_index')]
@@ -90,4 +92,15 @@ class StudentController extends AbstractController
             'StudentForm' => $form
         ]);
     }
+
+    // #[Route('/search', name: 'student_search')]
+    // public function search (Request $request, StudentRepository $studentRepository, ManagerRegistry $registry) {
+    //     $student = $registry->getRepository(Student::class)->findAll();
+    //     $keyword = $request->get('name');
+    //     $student = $studentRepository->search($keyword);
+    //     return $this->render("student/index.html.twig",
+    //                             [
+    //                                 'student' => $student,
+    //                             ]);
+    // }
 }
