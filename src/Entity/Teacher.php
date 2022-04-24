@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\StudentRepository;
+use App\Repository\TeacherRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: StudentRepository::class)]
-class Student
+#[ORM\Entity(repositoryClass: TeacherRepository::class)]
+class Teacher
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -31,7 +31,10 @@ class Student
     #[ORM\Column(type: 'string', length: 255)]
     private $email;
 
-    #[ORM\ManyToOne(targetEntity: Specialized::class, inversedBy: 'student')]
+    #[ORM\Column(type: 'string', length: 255)]
+    private $status;
+
+    #[ORM\ManyToOne(targetEntity: specialized::class, inversedBy: 'teachers')]
     private $specialized;
 
     public function getId(): ?int
@@ -111,12 +114,24 @@ class Student
         return $this;
     }
 
-    public function getSpecialized(): ?Specialized
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getSpecialized(): ?specialized
     {
         return $this->specialized;
     }
 
-    public function setSpecialized(?Specialized $specialized): self
+    public function setSpecialized(?specialized $specialized): self
     {
         $this->specialized = $specialized;
 
