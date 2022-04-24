@@ -49,4 +49,22 @@ class SemesterController extends AbstractController
                                 ]);
 
     }
+    #[Route('edit/{id}', name: 'semester_edit')]
+    public function semesterEdit(Request $request ,ManagerRegistry $registry, $id){
+        $semester = $registry->getRepository(Semester::class)->find($id);
+        $form = $this->createForm(SemesterType::class, $semester);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()){
+            $manager = $registry->getManager();
+            $manager -> persist($semester);
+            $manager -> flush();
+            $this->addFlash('Success', 'Add semester successfull !!');
+            return $this->redirectToRoute("semester_index");
+        }
+        return $this->renderForm('semester/edit.html.twig',
+                                [
+                                    'semesterForm' => $form
+                                ]);
+
+    }
 }

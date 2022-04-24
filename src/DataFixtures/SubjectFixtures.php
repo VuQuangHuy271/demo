@@ -14,6 +14,7 @@ class SubjectFixtures extends Fixture
             $subject = new Subject();
             $subject->setName("Computing $i");
             $subject->setDescription("Computing Reseach 1931 parts 2");
+            $subject->setImage("https://m.media-amazon.com/images/I/41Zfgv5gtwL.jpg");
             $manager->persist($subject);
         }
 

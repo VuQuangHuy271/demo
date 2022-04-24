@@ -36,7 +36,7 @@ class Teacher
     #[ORM\Column(type: 'string', length: 255)]
     private $status;
 
-    #[ORM\ManyToOne(targetEntity: specialized::class, inversedBy: 'teachers')]
+    #[ORM\ManyToOne(targetEntity: Specialized::class, inversedBy: 'teachers')]
     private $specialized;
 
     #[ORM\OneToMany(mappedBy: 'teacher', targetEntity: Subject::class)]

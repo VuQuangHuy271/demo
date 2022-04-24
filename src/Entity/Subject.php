@@ -27,6 +27,9 @@ class Subject
     #[ORM\OneToMany(mappedBy: 'subject', targetEntity: Mark::class)]
     private $marks;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $image;
+
     public function __construct()
     {
         $this->marks = new ArrayCollection();
@@ -72,6 +75,17 @@ class Subject
 
         return $this;
     }
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
 
     /**
      * @return Collection<int, Mark>
@@ -102,4 +116,6 @@ class Subject
 
         return $this;
     }
+
+
 }

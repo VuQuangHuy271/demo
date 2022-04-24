@@ -19,7 +19,7 @@
         <td>{{semester.dateStart | date('d/m/Y')}}</td>
         <td>{{semester.dateEnd | date('d/m/Y')}}</td>
         <td>
-            <a class="btn btn-warning" href="">Edit</a>
+            <a class="btn btn-warning" href="{{path('semester_edit', {'id': semester.id})}}">Edit</a>
             <a class="btn btn-danger" href="{{path('semester_delete',{'id':semester.id})}}"
             onclick="return confirm('Are you sure?')">Delete</a>
         </td>

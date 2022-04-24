@@ -1,0 +1,10 @@
+{% form_theme subjectForm 'bootstrap_5_layout.html.twig' %}
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class = "container-fluid col-md-10 text-center">
+    <h2>Add new Subject</h2>
+    {{ form_start(subjectForm) }}
+    {{ form_end(subjectForm) }}
+</div>
+{% endblock %}
