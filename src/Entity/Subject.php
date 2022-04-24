@@ -24,16 +24,12 @@ class Subject
     #[ORM\Column(type: 'string', length: 255)]
     private $description;
 
-    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'subjects')]
-    private $subject;
-
     #[ORM\OneToMany(mappedBy: 'subject', targetEntity: Mark::class)]
     private $marks;
 
     public function __construct()
     {
         $this->marks = new ArrayCollection();
-        $this->subjects = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -77,18 +73,6 @@ class Subject
         return $this;
     }
 
-    public function getSubject(): ?self
-    {
-        return $this->subject;
-    }
-
-    public function setSubject(?self $subject): self
-    {
-        $this->subject = $subject;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Mark>
      */
@@ -118,6 +102,4 @@ class Subject
 
         return $this;
     }
-
-
 }

@@ -13,6 +13,9 @@ class Mark
     #[ORM\Column(type: 'integer')]
     private $id;
 
+    #[ORM\ManyToOne(targetEntity: Student::class, inversedBy: 'marks')]
+    private $student;
+
     #[ORM\ManyToOne(targetEntity: Subject::class, inversedBy: 'marks')]
     private $subject;
 
@@ -25,12 +28,21 @@ class Mark
     #[ORM\Column(type: 'float')]
     private $assignment_2;
 
-    #[ORM\ManyToOne(targetEntity: Student::class, inversedBy: 'marks')]
-    private $student;
-
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getStudent(): ?Student
+    {
+        return $this->student;
+    }
+
+    public function setStudent(?Student $student): self
+    {
+        $this->student = $student;
+
+        return $this;
     }
 
     public function getSubject(): ?Subject
@@ -77,18 +89,6 @@ class Mark
     public function setAssignment2(float $assignment_2): self
     {
         $this->assignment_2 = $assignment_2;
-
-        return $this;
-    }
-
-    public function getStudent(): ?Student
-    {
-        return $this->student;
-    }
-
-    public function setStudent(?Student $student): self
-    {
-        $this->student = $student;
 
         return $this;
     }

@@ -42,6 +42,7 @@ class Teacher
     #[ORM\OneToMany(mappedBy: 'teacher', targetEntity: Subject::class)]
     private $subjects;
 
+
     public function __construct()
     {
         $this->subjects = new ArrayCollection();

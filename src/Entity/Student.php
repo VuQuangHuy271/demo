@@ -39,6 +39,7 @@ class Student
     #[ORM\OneToMany(mappedBy: 'student', targetEntity: Mark::class)]
     private $marks;
 
+
     public function __construct()
     {
         $this->marks = new ArrayCollection();
