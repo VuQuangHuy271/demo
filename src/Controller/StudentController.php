@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Course;
 use App\Entity\Student;
 use App\Form\StudentType;
 use App\Repository\StudentRepository;
@@ -106,14 +107,15 @@ class StudentController extends AbstractController
     //                             ]);
     // }
 
-    // #[Route('/search', name: 'student_search')]
-    // public function search (Request $request, StudentRepository $studentRepository, ManagerRegistry $registry) {
-    //     $student = $registry->getRepository(Student::class)->findAll();
-    //     $keyword = $request->get('name');
-    //     $student = $studentRepository->search($keyword);
-    //     return $this->render("student/index.html.twig",
-    //                             [
-    //                                 'student' => $student,
-    //                             ]);
-    // }
+    #[Route('/search', name: 'student_search')]
+    public function search (Request $request, StudentRepository $studentRepository, ManagerRegistry $registry) {
+        $course = $registry->getRepository(Course::class)->findAll();
+        $keyword = $request->get('name');
+        $students = $studentRepository->search($keyword);
+        return $this->render("student/index.html.twig",
+                                [
+                                    'student' => $students,
+                                    'course' => $course
+                                ]);
+    }
 }

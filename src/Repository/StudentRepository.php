@@ -59,20 +59,20 @@ class StudentRepository extends ServiceEntityRepository
     //         ;
     //     }
 
-    // /**
-    // * @return Student[]  
-    // */
-    // public function search ($keyword)
-    // {
-    //     return $this->createQueryBuilder('student')
-    //         ->andWhere('student.name LIKE :key')
-    //         ->setParameter('key', '%' . $keyword . '%')
-    //         ->orderBy('student.name', 'ASC')
-    //         ->setMaxResults(5)
-    //         ->getQuery()
-    //         ->getResult()
-    //     ;
-    // }
+    /**
+    * @return Student[]  
+    */
+    public function search ($keyword)
+    {
+        return $this->createQueryBuilder('student')
+            ->andWhere('student.name LIKE :key')
+            ->setParameter('key', '%' . $keyword . '%')
+            ->orderBy('student.name', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
     // /**
     //  * @return Student[] Returns an array of Student objects
