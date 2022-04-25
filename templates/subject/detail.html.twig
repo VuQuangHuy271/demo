@@ -9,6 +9,14 @@
                         <img src="{{subject.image}}" width=120 height=120>
             </a>
         </div>
+        <div>
+                {% if subject.teacher != null %}
+                <a class="text text-success text-decoration-none" href="{{ path('course_detail', {'id' : subject.teacher.id })}}">
+                            {{ subject.teacher.name }}
+                </a>              
+        {% endif %}
+        </div>
+
         <div class="col">
             <h6 class="text-info">{{subject.description}}</h6>
             <h4>Subject List</h4>  
