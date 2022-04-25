@@ -3,26 +3,27 @@
 {% block body %}
 <div class="container-fluid col-md-5 text-center">
     <h2 class="text text-primary mt-10">{{semester.name}}</h2>
-            <table class="table table-bordered border-primary">
+    <table class="table table-bordered border-primary">
+        <tr>
+            <th>Student Name</th>
+            <th>Subject</th>
+            <th>Assignment 1</th>
+            <th>Assignment 2</th>
+            <th>Average</th>
+        </tr>
+        {% if semester.marks != null %}
+            {% for mark in semester.marks %}
             <tr>
-                <th>Student Name</th>
-                <th>Subject</th>
-                <th>Assignment 1</th>
-                <th>Assignment 2</th>
-                <th>Average</th>
+                <td>{{mark.student.name}}</td>
+                <td>{{mark.subject.name}}</td>
+                <td>{{mark.assignment1}}</td>
+                <td>{{mark.assignment2}}</td>
+                <td>{{(mark.assignment1 + mark.assignment2)/2}}</td>
+            <br>
+            {% endfor %} 
+        {% endif %} 
             </tr>
-            {% if semester.marks != null %}
-                {% for mark in semester.marks %}
-                <tr>
-                    <td>{{mark.student.name}}</td>
-                    <td>{{mark.subject.name}}</td>
-                    <td>{{mark.assignment1}}</td>
-                    <td>{{mark.assignment2}}</td>
-                    <td>{{(mark.assignment1 + mark.assignment2)/2}}</td>
-                <br>
-                {% endfor %} 
-            {% endif %} 
-            </tr>
-            </table>   
+        </table>  
+    </div> 
 </div>
 {% endblock %}
