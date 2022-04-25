@@ -12,8 +12,9 @@
         <th>Semester</th>
         <th>Mark assignment 1</th>
         <th>Mark assignment 2</th>
+        <th>Mark Average</th>
         <th>Menu</th>
-        <th>Detail Information</th>
+        <th>Status</th>
     </tr>
     {% for mark in marks %}
     <tr>
@@ -41,13 +42,18 @@
         </td>
         <td> {{mark.assignment1}}</td>
         <td>{{mark.assignment2}}</td>
+        <td>{{(mark.assignment1 + mark.assignment2)/2}}</td>
         <td>
             <a class="btn btn-success" href="{{path('mark_edit', {'id': mark.id})}}">Edit</a>
             <a class="btn btn-info" href="{{path('mark_delete',{'id':mark.id})}}"
             onclick="return confirm('Are you sure?')">Delete</a>
         </td>
         <td>
-            <a class="btn btn-outline-dark" href="{{path('mark_detail',{'id':mark.id})}}">View More</a>
+        {% if ((mark.assignment1 + mark.assignment2)/2) >= 5 %}
+            Passed
+        {% else %}
+            Failed
+        {% endif %}
         </td>
     </tr>
     {% endfor %}

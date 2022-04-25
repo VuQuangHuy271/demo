@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Semester;
 use App\Form\SemesterType;
+use App\Repository\SemesterRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -78,5 +79,14 @@ class SemesterController extends AbstractController
                                     'semesterForm' => $form
                                 ]);
 
+    }
+    #[Route('/search', name: 'semester_search')]
+    public function search(Request $request ,SemesterRepository $semesterRepository){
+        $keyword = $request->get('name');
+        $semesters = $semesterRepository->searchSemester($keyword);
+        return $this->render('semester/index.html.twig', 
+                            [
+                                'semesters' => $semesters,
+                            ]);
     }
 }

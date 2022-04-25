@@ -75,4 +75,18 @@ class SubjectRepository extends ServiceEntityRepository
         ;
     }
     */
+    /**
+    * @return Subject[] 
+    */
+    public function searchSubject($keyword)
+    {
+        return $this->createQueryBuilder('subject')
+            ->andWhere('subject.name LIKE :key')
+            ->setParameter('key','%'. $keyword.'%')
+            ->orderBy('subject.name', 'ASC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

@@ -3,6 +3,10 @@
 {% block body %}
 <div class="container-fluid col-md-10 text-center">
     <h2 class = "text text-success">Semester</h2>
+    <form action="{{path('semester_search')}}" method="post">
+        <input type="search" name="name" id="">
+        <input type="submit" value="Search">
+    </form>
     <a class="btn btn-primary mt-5" href="{{path('semester_add')}}">ADD</a>
     <table class="table table-bordered">
     <tr>

@@ -27,7 +27,7 @@ class MarkType extends AbstractType
             ])
             ->add('assignment2', TextType::class,
             [
-                'label'=>'Mark Assignment 1',
+                'label'=>'Mark Assignment 2',
                 'required' => true
             ])
             ->add('student', EntityType::class, [

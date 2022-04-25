@@ -11,18 +11,17 @@
         </div>
         <div>
                 {% if subject.teacher != null %}
-                <a class="text text-success text-decoration-none" href="{{ path('course_detail', {'id' : subject.teacher.id })}}">
-                            {{ subject.teacher.name }}
+                <a class="text text-success text-decoration-none" href="{{ path('mark_detail', {'id' : subject.teacher.id })}}">
+                        Teacher name: {{ subject.teacher.name }}
                 </a>              
         {% endif %}
         </div>
 
         <div class="col">
-            <h6 class="text-info">{{subject.description}}</h6>
-            <h4>Subject List</h4>  
+            <h6 class="text-info">Description: {{subject.description}}</h6>
             {% if subject.marks != null %}
                 {% for mark in subject.marks %}
-                    <a class="text text-warning" href="{{path('mark_detail', {'id': mark.id})}}">{{mark.assignment1}}</a>
+                    <a class="text text-warning" href="{{path('mark_detail', {'id': mark.id})}}">{{mark.assignment1}}, {{mark.assignment2}}</a>
                     <br>
                 {% endfor %}   
             {% endif %} 

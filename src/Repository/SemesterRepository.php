@@ -75,4 +75,18 @@ class SemesterRepository extends ServiceEntityRepository
         ;
     }
     */
+    /**
+    * @return Mark[] 
+    */
+    public function searchSemester($keyword)
+    {
+        return $this->createQueryBuilder('semester')
+            ->andWhere('semester.name LIKE :key')
+            ->setParameter('key','%'. $keyword.'%')
+            ->orderBy('semester.name', 'ASC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

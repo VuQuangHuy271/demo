@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\Mark;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\ORM\Query\AST\Functions\AvgFunction;
 
 class MarkFixtures extends Fixture
 {

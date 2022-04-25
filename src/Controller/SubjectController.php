@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Subject;
+use App\Entity\Teacher;
 use App\Form\SubjectType;
+use App\Repository\SubjectRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -76,5 +78,16 @@ class SubjectController extends AbstractController
                                     'subjectForm' => $form
                                 ]);
 
+    }
+    #[Route('/search', name: 'subject_search')]
+    public function search(Request $request ,SubjectRepository $subjectRepository, ManagerRegistry $registry){
+        $teachers = $registry->getRepository(Teacher::class)->findAll();
+        $keyword = $request->get('name');
+        $semesters = $subjectRepository->searchSubject($keyword);
+        return $this->render('subject/index.html.twig', 
+                            [
+                                'subjects' => $semesters,
+                                'teachers' => $teachers
+                            ]);
     }
 }
