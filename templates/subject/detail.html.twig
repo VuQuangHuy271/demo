@@ -16,16 +16,16 @@
                 </a>              
         {% endif %}
         </div>
+        <h6 class="text-info">Description: {{subject.description}}</h6>
+        {# <div class="col">
 
-        <div class="col">
-            <h6 class="text-info">Description: {{subject.description}}</h6>
             {% if subject.marks != null %}
                 {% for mark in subject.marks %}
                     <a class="text text-warning" href="{{path('mark_detail', {'id': mark.id})}}">{{mark.assignment1}}, {{mark.assignment2}}</a>
                     <br>
                 {% endfor %}   
             {% endif %} 
-        </div>
+        </div> #}
     </div>
 </div>
 {% endblock %}
