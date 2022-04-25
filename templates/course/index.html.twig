@@ -14,9 +14,16 @@
             <th>Description</th>
             <th>Actions</th>
         </tr>
-        {% for course in course %}
+        <script language = "JavaScript">
+        var num = 1
+        </script>
+        {% for course in course %}   
             <tr>
-                <td>{{course.id}}</td>
+                <td>
+                    <script language = "JavaScript">
+                    document.write(num++);
+                    </script>
+                </td>
                 <td>                    
                     <a style="text-decoration:none" href="{{path('course_detail',{'id':course.id})}}">
                         {{course.name}}
