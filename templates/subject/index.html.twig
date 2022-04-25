@@ -17,9 +17,16 @@
             <th>Subject Image</th>
             <th>Actions</th>
         </tr>
-        {% for subject in subjects %}
+        <script language = "JavaScript">
+        var num = 1
+        </script>
+        {% for subject in subjects %}    
             <tr>
-                <td>{{subject.id}}</td>
+                <td>
+                    <script language = "JavaScript">
+                    document.write(num++);
+                    </script>
+                </td>
                 <td>
                     <p>
                             {{subject.name}}

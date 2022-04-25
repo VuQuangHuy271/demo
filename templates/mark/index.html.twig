@@ -16,9 +16,16 @@
         <th>Menu</th>
         <th>Status</th>
     </tr>
-    {% for mark in marks %}
-    <tr>
-        <td>{{mark.id}}</td>
+    <script language = "JavaScript">
+        var num = 1
+        </script>
+        {% for mark in marks %}    
+            <tr>
+                <td>
+                    <script language = "JavaScript">
+                    document.write(num++);
+                    </script>
+                </td>
         <td>
         {% if mark.student != null %}
             <a style="text-decoration: none" class="text text_success" href="{{path('student_detail', {'id': mark.student.id})}}">

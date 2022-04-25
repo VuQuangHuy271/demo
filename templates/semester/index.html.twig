@@ -16,9 +16,16 @@
         <th>Date End</th>
         <th>Menu</th>
     </tr>
-    {% for semester in semesters %}
-    <tr>
-        <td>{{semester.id}}</td>
+    <script language = "JavaScript">
+        var num = 1
+        </script>
+        {% for semester in semesters %}    
+            <tr>
+                <td>
+                    <script language = "JavaScript">
+                    document.write(num++);
+                    </script>
+                </td>
         <td>
             <a style="text-decoration: none" href="{{path('semester_detail',{'id':semester.id})}}">
                         {{semester.name}}
