@@ -29,7 +29,7 @@ class SemesterController extends AbstractController
         $semester = $registry->getRepository(Semester::class)->find($id);
         if ($semester == null) {
             $this->addFlash('error', 'Semester not found');
-            return $this->redirectToRoute('semester');
+            return $this->redirectToRoute('semester_detail');
         }
         return $this->render('semester/detail.html.twig', [
             'semester' => $semester

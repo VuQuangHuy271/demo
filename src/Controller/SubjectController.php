@@ -36,8 +36,8 @@ class SubjectController extends AbstractController
     {
         $subject = $registry->getRepository(Subject::class)->find($id);
         if ($subject == null) {
-            $this->addFlash('Error', 'Genre not found');
-            return $this->redirectToRoute('genre_index');
+            $this->addFlash('Error', 'Subject not found');
+            return $this->redirectToRoute('subject_index');
         }
         return $this->render('subject/detail.html.twig', [
             'subject' => $subject

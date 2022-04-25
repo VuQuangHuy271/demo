@@ -21,13 +21,13 @@
             <tr>
                 <td>{{subject.id}}</td>
                 <td>
-                    <a class="text text-success text-decoration-none" href="{{ path('mark_detail', {'id' : subject.teacher.id })}}">
+                    <p>
                             {{subject.name}}
-                    </a>  
+                    </p>  
                 </td>
                 <td>
                     {% if subject.teacher != null %}
-                        <a class="text text-success text-decoration-none" href="{{ path('subject_detail', {'id' : subject.teacher.id })}}">
+                        <a class="text text-success text-decoration-none" href="{{ path('mark_detail', {'id' : subject.teacher.id })}}">
                             {{ subject.teacher.name }}
                         </a>   
                     {% endif %}

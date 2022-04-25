@@ -9,7 +9,7 @@
         </div> #}
         <div class = "col">
             <h5 calss="text-success">Student Name:
-                {% if mark.subject != null %}
+                {% if mark.student!= null %}
                     <a href="{{path('student_detail', {'id': mark.student.id})}}">{{mark.student.name}}</a>
                 {% endif %} 
             </h5>
@@ -19,8 +19,8 @@
                 {% endif %} 
             </h5>
             <h5 calss="text-success">Semester:
-                {% if mark.subject != null %}
-                    <a href="{{path('subject_detail', {'id': mark.subject.id})}}">{{mark.semester.name}}</a>
+                {% if mark.semester != null %}
+                    <a href="{{path('semester_detail', {'id': mark.semester.id})}}">{{mark.semester.name}}</a>
                 {% endif %} 
             </h5>
             <h3 class="text-info">Assignment 1: {{mark.assignment1}}</h3>
