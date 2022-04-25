@@ -39,7 +39,6 @@
                     <li class="nav-item">
                         <a class="navbar-brand" href="{{ path('course_index') }}">Course List</a>
                     </li>
-<<<<<<< Updated upstream
 
                     <li class="nav-item">
                         <a class="navbar-brand" href="{{ path('mark_index') }}">Mark Report</a>
@@ -53,7 +52,6 @@
                         <a class="navbar-brand" href="{{ path('semester_index') }}">Semester</a>
                     </li>
                 </ul>
-=======
                     {% if is_granted('ROLE_Teacher') %}
                     <h1><li class="nav-tabs">
                     <a class="nav-link" href="{{ path('app_logout')}}">Logout <i> ({{ app.user.username }}) </i> </a>
@@ -63,7 +61,6 @@
                     <a class="navbar-brand">Disabled</a>
                     </li> #}
                 
->>>>>>> Stashed changes
                 {# <form class="d-flex" action="{{ path('student_search') }}" method="post">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
