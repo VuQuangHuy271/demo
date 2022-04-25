@@ -8,11 +8,5 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SpecializedController extends AbstractController
 {
-    #[Route('/specialized', name: 'app_specialized')]
-    public function index(): Response
-    {
-        return $this->render('specialized/index.html.twig', [
-            'controller_name' => 'SpecializedController',
-        ]);
-    }
+    
 }

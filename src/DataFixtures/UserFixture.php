@@ -15,8 +15,8 @@ class UserFixture extends Fixture
     {
         for($i = 0; $i < 5; $i++) {
             $user = new User();
-            $user->setUsername("admin $i");
-            $user -> setRoles(['ROLE_Teacher']);
+            $user->setUsername("admin$i");
+            $user -> setRoles(['ROLE_ADMIN']);
             $user -> setPassword($this->hasher->hashPassword($user,"123456"));
             $manager ->persist($user);
         }

@@ -4,10 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Mark;
 use App\Form\MarkType;
-use App\Entity\Student;
-use App\Entity\Subject;
-use App\Entity\Semester;
-use App\Repository\MarkRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -51,6 +47,7 @@ class MarkController extends AbstractController
         $form = $this->createForm(MarkType::class, $mark);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
+            
             $manager = $registry->getManager();
             $manager -> persist($mark);
             $manager -> flush();

@@ -1,0 +1,44 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="container col-md-8 text-center">
+    <h2 class="text-success mb-4"> {{teacher.name}} </h2>
+    <div class="row">
+        <div class="col">
+            <img src="{{teacher.image}}" width=200 height=250>
+        </div>
+        <div class="col">
+            <h5 class="text-info">Date: {{teacher.dateOfBirth | date('d/m/Y') }}</h5>
+            <h5 class="text-warning">Course: 
+                {# {% if teacher.course != null %}
+                <a class="text text-success" href="{{ path('course_detail' , {'id' : teacher.course.id})}}">
+                    {{ teacher.course.name }}
+                </a>             
+                {% endif %} #}
+            </h5>
+
+            {# <h5 class="text-warning">Class: 
+                {% if teacher.class != null %}
+                <a class="text text-success" href="{{ path('course_detail' , {'id' : teacher.course.id})}}">
+                    {{ teacher.course.name }}
+                </a>             
+                {% endif %}
+            </h5> #}
+
+            <h5 class="text-secondary">Phone: {{ teacher.phone}}</h5>
+            <h5 class="text-secondary">Email: {{ teacher.email }}</h5>
+
+    
+
+
+        </div>
+        <div class="d-grid gap-5 col-1 mx-auto">
+            <a class="btn btn-outline-info" href="{{path('teacher_edit',{'id': teacher.id})}}">Edit</a>
+            <a class="btn btn-outline-warning" href="{{path('teacher_delete',{'id': teacher.id})}}"
+            onclick="return confirm('Are you sure?')">Delete</a>
+        </div>
+
+
+    </div>
+</div>
+{% endblock %}
