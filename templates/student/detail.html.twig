@@ -28,6 +28,7 @@
             <h5 class="text-secondary">Phone: {{ student.phone}}</h5>
             <h5 class="text-secondary">Email: {{ student.email }}</h5>
 
+<<<<<<< Updated upstream
             {% if student.marks != null %}
                 {% for mark in student.marks %}
                 <p class="text text-success" href="{{ path('mark_detail' , {'id' : mark.id })}}"> 
@@ -41,6 +42,8 @@
                 {% endfor %}
             {% endif %}
 
+=======
+>>>>>>> Stashed changes
         </div>
         <div class="d-grid gap-5 col-1 mx-auto">
             <a class="btn btn-outline-info" href="{{path('student_edit',{'id': student.id})}}">Edit</a>

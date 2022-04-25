@@ -21,9 +21,17 @@
             <th>Image</th>
             <th>Actions</th>
         </tr>
+        <script language = "JavaScript">
+                    var num = 1
+        </script>
         {% for student in student %}
+        
             <tr>
-                <td>{{student.id}}</td>
+                <td>
+                    <script language = "JavaScript">
+                    document.write(num++);
+                    </script>
+                </td>
                 <td>
                     <a style="text-decoration:none" href="{{path('student_detail',{'id':student.id})}}">
                         {{student.name}}
