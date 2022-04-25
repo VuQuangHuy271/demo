@@ -27,15 +27,7 @@
                     document.write(num++);
                     </script>
                 </td>
-                <td>
-<<<<<<< Updated upstream
-                    <p>
-                            {{subject.name}}
-                    </p>  
-=======
-                    {{subject.name}}
->>>>>>> Stashed changes
-                </td>
+                <td>{{subject.name}}</td>
                 <td>
                     {% if subject.teacher != null %}
                         <a class="text text-success text-decoration-none" href="{{ path('mark_detail', {'id' : subject.teacher.id })}}">
