@@ -20,7 +20,7 @@
             </h5>
             <h5 calss="text-success">Semester:
                 {% if mark.subject != null %}
-                    <a href="{{path('subject_detail', {'id': mark.subject.id})}}">{{mark.subject.name}}</a>
+                    <a href="{{path('subject_detail', {'id': mark.subject.id})}}">{{mark.semester.name}}</a>
                 {% endif %} 
             </h5>
             <h3 class="text-info">Assignment 1: {{mark.assignment1}}</h3>
