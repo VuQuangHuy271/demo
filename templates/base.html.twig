@@ -55,12 +55,12 @@
                         <a class="navbar-brand" href="{{ path('teacher_index') }}">Teacher</a>
                     </li>
                 </ul>
-                    {% if not is_granted('ROLE_Teacher') %}
+                    {% if not is_granted('ROLE_ADMIN') %}
                     <h4>
                         <a class="nav-link" href="{{ path('app_login')}}">Login <i> </i> </a>
                     </h4>
                     {% endif %}
-                    {% if is_granted('ROLE_Teacher') %}
+                    {% if is_granted('ROLE_ADMIN') %}
                     <h4>
                         <a class="nav-link" href="{{ path('app_logout')}}">Logout <i> ({{ app.user.username }}) </i> </a>
                     </h4>
