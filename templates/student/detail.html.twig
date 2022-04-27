@@ -16,6 +16,15 @@
                 </a>             
                 {% endif %}
             </h5>
+
+            {# <h5 class="text-warning">Class: 
+                {% if student.class != null %}
+                <a class="text text-success" href="{{ path('course_detail' , {'id' : student.course.id})}}">
+                    {{ student.course.name }}
+                </a>             
+                {% endif %}
+            </h5> #}
+
             <h5 class="text-secondary">Phone: {{ student.phone}}</h5>
             <h5 class="text-secondary">Email: {{ student.email }}</h5>
 
