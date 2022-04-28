@@ -30,9 +30,19 @@
             <a style="text-decoration: none" href="{{path('semester_detail',{'id':semester.id})}}">
                         {{semester.name}}
             </a>
+        </td>     
+        <td>{{semester.dateStart | date('d/m/Y')}}
+            
+
         </td>
-        <td>{{semester.dateStart | date('d/m/Y')}}</td>
-        <td>{{semester.dateEnd | date('d/m/Y')}}</td>
+        <td>{{semester.dateEnd | date('d/m/Y')}}
+            {# Set the end date to be greater than the start date #}
+            {# {% if semester.dateEnd < semester.dateStart %}
+                <span class="text-danger">
+                    End date is less than start date
+                </span>
+            {% endif %} #}
+        </td>
         <td>
             <a class="btn  btn-success" href="{{path('semester_edit', {'id': semester.id})}}">Edit</a>
             <a class="btn btn-info" href="{{path('semester_delete',{'id':semester.id})}}"

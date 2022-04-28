@@ -22,10 +22,18 @@ class MarkController extends AbstractController
     }
     #[Route('/delete/{id}', name: 'mark_delete')]
     public function markDelete(ManagerRegistry $registry, $id){
-        $marks = $registry->getRepository(Mark::class)->find($id);
-        $manager = $registry->getManager();
-        $manager->remove($marks);
-        $manager->flush();
+        //getRepository() method sẽ trả về một repository cho phép bạn query tới database.
+        $mark = $registry->getRepository(Mark::class)->find($id);
+        if ($mark == null) {
+            $this->addFlash("Error","Mark not found !");
+        }
+        else{
+            $marks = $registry->getRepository(Mark::class)->find($id);
+            $manager = $registry->getManager();
+            $manager->remove($marks);
+            $manager->flush();
+        }
+
         $this->addFlash('Success!!', 'Mark is deleted');
         return $this->redirectToRoute('mark_index');
     }
@@ -42,13 +50,17 @@ class MarkController extends AbstractController
         ]);
     }
     #[Route('/add', name: 'mark_add')]
+    //ManagerRegistry $doctrine số yêu cầu Symfony đưa dịch vụ Doctrine vào phương thức controller.
     public function markAdd(Request $request, ManagerRegistry $registry){
         $mark = new Mark();
         $form = $this->createForm(MarkType::class, $mark);
+    // Để xử lý dữ liệu biểu mẫu, bạn sẽ cần gọi phương thức handleRequest ()
+    // Đằng sau, điều này sử dụng một đối tượng NativeRequestHandler để đọc dữ liệu của các 
+    // superglobals PHP chính xác (tức là $_POSThoặc $_GET) dựa trên phương thức HTTP được định cấu hình trên biểu mẫu (POST là mặc định)
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
-            
             $manager = $registry->getManager();
+            //Persist tìm và nạp đối tượng từ doctrine
             $manager -> persist($mark);
             $manager -> flush();
             $this->addFlash('Success', 'Add mark successfull !!');

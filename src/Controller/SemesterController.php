@@ -18,7 +18,7 @@ class SemesterController extends AbstractController
     #[Route('/', name: 'semester_index')]
     public function semesterIndex(ManagerRegistry $registry)
     {
-        $semesters = $registry->getRepository(Semester::class)->findAll();     
+        $semesters = $registry->getRepository(Semester::class)->findAll(); 
         return $this->render('semester/index.html.twig', [
             'semesters' => $semesters
         ]);

@@ -9,6 +9,8 @@
             <th>Assignment 1</th>
             <th>Assignment 2</th>
             <th>Average</th>
+            <th>Rank</th>
+
         </tr>
         {% if semester.marks != null %}
             {% for mark in semester.marks %}
@@ -18,6 +20,28 @@
                 <td>{{mark.assignment1}}</td>
                 <td>{{mark.assignment2}}</td>
                 <td>{{(mark.assignment1 + mark.assignment2)/2}}</td>
+                <th>
+                {# find max in average asssignment #}
+                {# {% set max = (mark.assignment1 + mark.assignment2)/2 %}
+                {% for mark in semester.marks %}
+                    {% if (mark.assignment1 + mark.assignment2)/2 > max %}
+                        {% set max = (mark.assignment1 + mark.assignment2)/2 %}
+                    {% else %}
+                        {% set min = (mark.assignment1 + mark.assignment2)/2 %}                 
+                    {% endif %}
+                {% endfor %} #}
+                {# find max/min in average asssignment using boollean #}
+                {% if (mark.assignment1 + mark.assignment2)/2 >= 5 %}
+                    High Grade
+                {% else %}
+                    Lowest
+                {% endif %}
+
+                
+                
+                
+                </th>
+
             <br>
             {% endfor %} 
         {% endif %} 
