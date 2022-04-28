@@ -48,29 +48,52 @@ class StudentRepository extends ServiceEntityRepository
     }
 
 
-        //     /**
-        //  * @return Book[]  
-        // */
-        // public function sortStudentAsc()
-        // {
-        //     return $this->createQueryBuilder('student')
-        //         ->orderBy('student.id', 'ASC')
-        //         ->getQuery()
-        //         ->getResult()
-        //     ;
-        // }
+            /**
+         * @return Student[]  
+        */
+        public function sortStudentAsc()
+        {
+            return $this->createQueryBuilder('student')
+                ->orderBy('student.date_of_birth', 'ASC')
+                ->getQuery()
+                ->getResult()
+            ;
+        }
 
-        // /**
-        //  * @return Book[]  
-        // */
-        // public function sortStudentDESC()
-        // {
-        //     return $this->createQueryBuilder('student')
-        //         ->orderBy('student.id', 'DESC')
-        //         ->getQuery()
-        //         ->getResult()
-        //     ;
-        // }
+        /**
+         * @return Student[]  
+        */
+        public function sortStudentDESC()
+        {
+            return $this->createQueryBuilder('student')
+                ->orderBy('student.date_of_birth', 'DESC')
+                ->getQuery()
+                ->getResult()
+            ;
+        }
+
+    //         /**
+    // * @return Teacher[]  
+    // */
+    // public function Asc()
+    // {
+    //     return $this->createQueryBuilder('teacher')
+    //         ->orderBy('teacher.id', 'ASC')
+    //         ->getQuery()
+    //         ->getResult()
+    //     ;
+    // }
+    // /**
+    // * @return Teacher[]  
+    // */
+    // public function Desc()
+    // {
+    //     return $this->createQueryBuilder('teacher')
+    //         ->orderBy('teacher.id', 'DESC')
+    //         ->getQuery()
+    //         ->getResult()
+    //     ;
+    // }
         
 
     /**

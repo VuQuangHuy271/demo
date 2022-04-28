@@ -11,6 +11,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class StudentType extends AbstractType
@@ -26,12 +27,11 @@ class StudentType extends AbstractType
                 ],
                 'required' => true,
             ])
-                
-                ->add('Gender', TextType::class,[
-                    'label'=> 'Gender',
-                    'required' => true,
-                    'attr' => [
-                        'placeholder' => 'Enter your Gender',
+                ->add('Gender', ChoiceType::class,[
+                    'choices'  => [
+                        'Male' => 'Male',
+                        'Female' => 'Female',
+                        'Unknown' => 'Unknown'
                     ],
 
                 ])
@@ -73,6 +73,10 @@ class StudentType extends AbstractType
                     'choice_label' => 'name',
                     'multiple' => false,
                     'expanded' => false
+                //multiple = true: ManyToMany, OneToMany => có thể chọn nhiều item
+                //multiple = false: OneToOne, ManyToOne => chỉ được chọn 1 item
+                //expanded = true: hiển thị danh sách mở rộng
+                //expanded = false: hiển thị danh sách rút gọn
                 ])
                 ->add('save', SubmitType::class)
                 ;

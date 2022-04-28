@@ -11,30 +11,20 @@
         <a class="btn btn-primary mb-3" href="{{ path('student_add')}}">Add Student</a>
     <table class="table table-hover mt-3">
         <tr>
-            {# <th>Student ID
-                <select onchange="window.location.href=this.value">
-                    <option>Sort</option>
-                    <option value="{{ path('student_asc')}}">Ascending</option>
-                    <option value="{{ path('student_desc')}}">Descending</option>
-                </select>       
-            </th> #}
             <th>ID</th>
             <th>Student Name</th>
             <th>Gender</th>
-            <th>Date Of Birth</th>
+            <th>Date
+                <select onchange="window.location.href = this.value">
+                    <option>Sort</option>
+                    <option value="{{ path('student_asc')}}">Ascending</option>
+                    <option value="{{ path('student_desc')}}">Descending</option>
+                </select> 
+            </th>
+
             <th>Phone Number</th>
             <th>Email</th>
             <th>Student Course</th>
-            {# <th>Student Course
-                <select onchange="window.location.href=this.value">
-                        <option value="">Filter</option>
-                        {% for course in course %} 
-                            <option value="{{ path('student_filter', {'id' : course.id}) }}">{{ course.name }}</option>
-                        {% endfor %}
-                </select>
-
-                
-            </th> #}
             <th>Image</th>
             <th>Actions</th>
         </tr>
@@ -42,7 +32,6 @@
                     var num = 1
         </script>
         {% for student in student %}
-        
             <tr>
                 <td>
                     <script language = "JavaScript">
@@ -80,5 +69,10 @@
             </tr>
         {% endfor %}
     </table>
+        {# <h2>total student:
+            <script>
+                document.write(num-1)
+            </script>
+        </h2> #}
 </div>
 {% endblock %}

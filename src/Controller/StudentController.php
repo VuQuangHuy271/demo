@@ -56,13 +56,19 @@ class StudentController extends AbstractController
     }
 
     #[Route('/add', name: 'student_add')]
+    //ManagerRegistry $doctrine yêu cầu Symfony đưa dịch vụ Doctrine vào phương thức controller.
     public function studentAdd(Request $request, ManagerRegistry $registry){
         $student = new Student;
+        //getRepository() method sẽ trả về một repository cho phép bạn query tới database.
         $form = $this->createForm(StudentType::class, $student);
+        // Để xử lý dữ liệu biểu mẫu, bạn sẽ cần gọi phương thức handleRequest ()
+        // Đằng sau, điều này sử dụng một đối tượng NativeRequestHandler để đọc dữ liệu của các 
+        // superglobals PHP chính xác (tức là $_POSThoặc $_GET) dựa trên phương thức HTTP được định cấu hình trên biểu mẫu (POST là mặc định).
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $manager = $registry->getManager();
             $manager->persist($student);
+            // persist tìm và nạp dữ liệu từ doctrine
             $manager->flush();
             $this->addFlash('Success', 'Student added');
             return $this->redirectToRoute('student_index');
@@ -93,19 +99,6 @@ class StudentController extends AbstractController
         ]);
     }
 
-
-    // #[Route('/filter/{id}', name: 'student_filter')]
-    // public function filter ($id, ManagerRegistry $registry) {
-    //     $course = $registry->getRepository(Course::class)->findAll();
-    //     $course = $registry->getRepository(Course::class)->find($id);
-    //     $student = $course->getStudent();
-    //     return $this->render("student/index.html.twig",
-    //                             [
-    //                                     'student' => $student,
-    //                                     'course' => $course
-    //                             ]);
-    // }
-
     #[Route('/search', name: 'student_search')]
     public function search (Request $request, StudentRepository $studentRepository, ManagerRegistry $registry) {
         $course = $registry->getRepository(Course::class)->findAll();
@@ -118,38 +111,25 @@ class StudentController extends AbstractController
                                 ]);
     }
 
-    // #[Route('/asc', name: 'student_asc')]
-    // public function sortAsc(StudentRepository $studentRepository, ManagerRegistry $registry) {
-    //     $course = $registry->getRepository(Course::class)->findAll();
-    //     $student = $studentRepository->sortStudentAsc();
-    //     return $this->render("student/index.html.twig",
-    //                             [
-    //                                 'student' => $student,
-    //                                 'course' => $course
-    //                             ]);
-    // }
-    // #[Route('/desc', name: 'student_desc')]
-    // public function sortDesc(StudentRepository $studentRepository, ManagerRegistry $registry){
-    //     $course = $registry->getRepository(Course::class)->findAll();
-    //     $student = $studentRepository->sortStudentDESC();
-    //     return $this ->render("student/index.html.twig",
-    //     [
-    //         'student' => $student,
-    //         'course' => $course
-    //     ]);
-    // }
-
-    
-    // #[Route('/filter/{id}', name: 'student_filter')]
-    // public function filter ($id, ManagerRegistry $registry) {
-    //     $courses = $registry->getRepository(Course::class)->findAll();
-    //     $course = $registry->getRepository(Course::class)->find($id);
-    //     $student = $course->getStudent();
-    //     return $this->render("student/index.html.twig",
-    //                             [
-    //                                     'student' => $student,
-    //                                     'course' => $courses
-    //                             ]);
-    // }
+    #[Route('/asc', name: 'student_asc')]
+    public function sortAsc(StudentRepository $studentRepository, ManagerRegistry $registry) {
+        $course = $registry->getRepository(Course::class)->findAll();
+        $student = $studentRepository->sortStudentAsc();
+        return $this->render("student/index.html.twig",
+                                [
+                                    'student' => $student,
+                                    'course' => $course
+                                ]);
+    }
+    #[Route('/desc', name: 'student_desc')]
+    public function sortDesc(StudentRepository $studentRepository, ManagerRegistry $registry){
+        $course = $registry->getRepository(Course::class)->findAll();
+        $student = $studentRepository->sortStudentDESC();
+        return $this ->render("student/index.html.twig",
+        [
+            'student' => $student,
+            'course' => $course
+        ]);
+    }
 
 }
