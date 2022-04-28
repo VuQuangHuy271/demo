@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Course;
 use App\Entity\Student;
+use App\Entity\Specialized;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -65,9 +66,17 @@ class StudentType extends AbstractType
                     'label' => 'Image',
                     'required' => true,
                 ])
+                ->add('specialized', EntityType::class, [
+                    'label' => 'Specialized Name',
+                    'required' => true,
+                    'class' => Specialized::class,
+                    'choice_label' => 'name',
+                    'multiple' => false,
+                    'expanded' => false
+                ])
                 ->add('save', SubmitType::class)
                 ;
-
+                
     }
 
     public function configureOptions(OptionsResolver $resolver): void

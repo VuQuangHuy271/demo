@@ -1,0 +1,46 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="container col-md-8 text-center">
+    <h2 class="text-success mb-4"> {{specialized.name}} </h2>
+    <div class="row">
+        <div class="col">
+                
+                <h4>Teacher List: 
+                <br>
+                {% if specialized.teachers != null %}
+                    {% for teachers in specialized.teachers %}
+                        <a class="text text-success" style="text-decoration: none;" href="{{ path('teacher_detail' , {'id' : teachers.id })}}"> 
+                            {{ teachers.name }} 
+                        </a>
+                        <br>
+                    {% endfor %}
+                    
+                </a>            
+                {% endif %}
+                
+        </div>
+        <div class="d-grid gap-5 col-5 mx-auto">
+        <h4>Student List: 
+        <br>
+                {% if specialized.student != null %}
+                    {% for student in specialized.student %}
+                        <a class="text text-success" style="text-decoration: none;" href="{{ path('student_detail' , {'id' : student.id })}}"> 
+                            {{ student.name }} 
+                        </a>
+                        <br>
+                    {% endfor %}
+                    
+                </a>            
+                {% endif %}
+        </div>
+        <div>
+        {# <a class="btn btn-outline-info" href="{{path('specialized_edit',{'id': specialized.id})}}"></a> #}
+            <a class="btn btn-outline-warning" href="{{path('specialized_delete',{'id': specialized.id})}}"
+            onclick="return confirm('Are you sure?')">Delete</a>
+        </div>
+
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="container col-md-8 text-center">
+        <h5 class="text-info">Classroom: {{classroom.name  }}</h5>
+            {% if classroom.subject != null %}       
+            <h5>Subject Name: {{classroom.subject.name}}</h5>    
+                {% for subject in classroom.subject %}                
+                    {% if subject.teacher != null %}
+                        <h5>Teacher Name: {{subject.teacher.name}}</h5>
+                    {% endif %} 
+                {% endfor %}
+            {% endif %} 
+        <table class="table table-hover mt-3">
+        <tr>
+            <th>Number</th>
+            <th>Student Name</th>
+        </tr>
+        <script language = "JavaScript">
+                    var num = 1
+        </script>
+        {% for classroom in classroom %}      
+            <tr>
+                <td>
+                    <script language = "JavaScript">
+                    document.write(num++);
+                    </script>
+                </td>
+                <td>
+                    <a style="text-decoration:none" href="{{path('classroom_detail',{'id':classroom.id})}}">
+                        {{classroom.name}}
+                    </a>
+                </td>
+                <td>
+                    {# <a class="btn btn-outline-primary" href="{{ path('classroom_edit', {'id' : classroom.id }) }}">EDIT</a>
+                    <a class="btn btn-outline-warning" 
+                    href="{{ path('classroom_delete', {'id' : classroom.id}) }}"
+                    onclick="return confirm('Do you want to delete this classroom ?');"
+                    >DELETE</a> #}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+        {# <div class="d-grid gap-5 col-1 mx-auto">
+            <a class="btn btn-outline-info" href="{{path('student_edit',{'id': student.id})}}">Edit</a>
+            <a class="btn btn-outline-warning" href="{{path('student_delete',{'id': student.id})}}"
+            onclick="return confirm('Are you sure?')">Delete</a>
+        </div> #}
+
+
+    </div>
+</div>
+{% endblock %} 

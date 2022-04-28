@@ -12,7 +12,7 @@ class ClassroomFixtures extends Fixture
     {
         for($i = 0; $i < 10; $i++){
             $classroom = new Classroom();
-            $classroom->setName("GCH0901 $i");
+            $classroom->setName("GCH090$i");
             $manager->persist($classroom);
         }
 

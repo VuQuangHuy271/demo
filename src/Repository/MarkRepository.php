@@ -48,9 +48,9 @@ class MarkRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Mark[] Returns an array of Mark objects
+    //  * @return Mark[]  
     //  */
-    /*
+
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('m')
@@ -62,7 +62,16 @@ class MarkRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
+
+    // public function sortBookDesc()
+    // {
+    //     return $this->createQueryBuilder('mark')
+    //         ->orderBy('mark.id', 'DESC')
+    //         ->getQuery()
+    //         ->getResult()
+    //     ;
+    // }
+
 
     /*
     public function findOneBySomeField($value): ?Mark

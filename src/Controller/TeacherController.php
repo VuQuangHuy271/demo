@@ -43,7 +43,9 @@ class TeacherController extends AbstractController
         $teacher = $registry->getRepository(Teacher::class)->find($id);
         if ($teacher == null) {
             $this->addFlash("Error","teacher not found !");
-        } else {
+        } else if(count($teacher->getSubjects()) > 0){
+            $this -> addFlash("Error", "can not delete this teacher");
+        }else{
             $manager = $registry->getManager();
             $manager->remove($teacher);
             $manager->flush();
@@ -104,5 +106,13 @@ class TeacherController extends AbstractController
                                     'teacher' => $teachers,
                                     'course' => $course
                                 ]);
+    }
+    #[Route('/Desc', name: 'DescTeacher')]
+    public function AscTeacher(TeacherRepository $teacherRepository, ManagerRegistry $registry){
+        $teacher = $registry -> getRepository(Teacher::class)->findAll();
+        $teacher = $teacherRepository->Desc();
+        return $this -> render('teacher/index.html.twig',[
+            'teacher' => $teacher,
+        ]);
     }
 }

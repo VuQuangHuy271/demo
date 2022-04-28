@@ -9,22 +9,19 @@
         </div>
         <div class="col">
             <h5 class="text-info">Date: {{teacher.dateOfBirth | date('d/m/Y') }}</h5>
-            <h5 class="text-warning">Course: 
-                {# {% if teacher.course != null %}
-                <a class="text text-success" href="{{ path('course_detail' , {'id' : teacher.course.id})}}">
-                    {{ teacher.course.name }}
-                </a>             
-                {% endif %} #}
-            </h5>
-
-            {# <h5 class="text-warning">Class: 
-                {% if teacher.class != null %}
+            {# <h5 class="text-warning">Course: 
+                {% if teacher.course != null %}
                 <a class="text text-success" href="{{ path('course_detail' , {'id' : teacher.course.id})}}">
                     {{ teacher.course.name }}
                 </a>             
                 {% endif %}
             </h5> #}
 
+                {% if teacher.specialized != null %}
+                <a class="text text-success" style="text-decoration: none" href="{{ path('specialized_detail' , {'id' : teacher.specialized.id})}}">
+                    Specialized: {{ teacher.specialized.name }}
+                </a>             
+                {% endif %}
             <h5 class="text-secondary">Phone: {{ teacher.phone}}</h5>
             <h5 class="text-secondary">Email: {{ teacher.email }}</h5>
 

@@ -12,7 +12,7 @@ class TeacherFixture extends Fixture
     {
         for($i = 0; $i <= 10; $i++){
             $teacher = new Teacher();
-            $teacher -> setName("Test $i");
+            $teacher -> setName("Teacher $i");
             $teacher->setGender("Male");
             $teacher->setDateOfBirth(\DateTime::createFromFormat('Y-m-d','1990-02-07'));
             $teacher->setPhone(100);

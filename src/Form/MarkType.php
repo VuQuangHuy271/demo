@@ -20,16 +20,6 @@ class MarkType extends AbstractType
         $builder
             // ->add('student')
             // ->add('teacher')
-            ->add('assignment1', TextType::class,
-            [
-                'label'=>'Mark Assignment 1',
-                'required' => true
-            ])
-            ->add('assignment2', TextType::class,
-            [
-                'label'=>'Mark Assignment 2',
-                'required' => true
-            ])
             ->add('student', EntityType::class, [
                 'label' => 'Student Name',
                 'required' => true,
@@ -53,6 +43,16 @@ class MarkType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => false,
                 'expanded' => false
+            ])
+            ->add('assignment1', TextType::class,
+            [
+                'label'=>'Mark Assignment 1',
+                'required' => true
+            ])
+            ->add('assignment2', TextType::class,
+            [
+                'label'=>'Mark Assignment 2',
+                'required' => true
             ])
             ->add('Save', SubmitType::class)
         ;
