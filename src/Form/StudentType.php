@@ -42,7 +42,7 @@ class StudentType extends AbstractType
                 ])
                 ->add('Phone', TextType::class,
                 [
-                    'label' => 'Phone',
+                    'label' => 'Phone Student',
                     'required' => true,
                 ])
                 ->add('Email', TextType::class,
