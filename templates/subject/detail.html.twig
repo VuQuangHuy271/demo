@@ -11,7 +11,7 @@
         </div>
         <div>
                 {% if subject.teacher != null %}
-                <a class="text text-success text-decoration-none" href="{{ path('mark_detail', {'id' : subject.teacher.id })}}">
+                <a class="text text-success text-decoration-none" href="{{ path('teacher_detail', {'id' : subject.teacher.id })}}">
                         Teacher name: {{ subject.teacher.name }}
                 </a>              
         {% endif %}

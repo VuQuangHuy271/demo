@@ -41,7 +41,6 @@ class StudentController extends AbstractController
     #[Route('/delete/{id}', name: 'student_delete')]
     public function studentDelete (ManagerRegistry $registry, $id) {
         $student = $registry->getRepository(Student::class)->find($id);
-        // $genres = $registry->getRepository(Genre::class)->findAll();
         if ($student == null) {
             $this->addFlash("Error","student not found !");
         } else {
@@ -118,4 +117,39 @@ class StudentController extends AbstractController
                                     'course' => $course
                                 ]);
     }
+
+    // #[Route('/asc', name: 'student_asc')]
+    // public function sortAsc(StudentRepository $studentRepository, ManagerRegistry $registry) {
+    //     $course = $registry->getRepository(Course::class)->findAll();
+    //     $student = $studentRepository->sortStudentAsc();
+    //     return $this->render("student/index.html.twig",
+    //                             [
+    //                                 'student' => $student,
+    //                                 'course' => $course
+    //                             ]);
+    // }
+    // #[Route('/desc', name: 'student_desc')]
+    // public function sortDesc(StudentRepository $studentRepository, ManagerRegistry $registry){
+    //     $course = $registry->getRepository(Course::class)->findAll();
+    //     $student = $studentRepository->sortStudentDESC();
+    //     return $this ->render("student/index.html.twig",
+    //     [
+    //         'student' => $student,
+    //         'course' => $course
+    //     ]);
+    // }
+
+    
+    // #[Route('/filter/{id}', name: 'student_filter')]
+    // public function filter ($id, ManagerRegistry $registry) {
+    //     $courses = $registry->getRepository(Course::class)->findAll();
+    //     $course = $registry->getRepository(Course::class)->find($id);
+    //     $student = $course->getStudent();
+    //     return $this->render("student/index.html.twig",
+    //                             [
+    //                                     'student' => $student,
+    //                                     'course' => $courses
+    //                             ]);
+    // }
+
 }

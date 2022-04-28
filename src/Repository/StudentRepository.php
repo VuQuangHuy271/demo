@@ -47,17 +47,31 @@ class StudentRepository extends ServiceEntityRepository
         }
     }
 
-    // /**
-    //   * @return Student[]  
-    // */
-    //     public function sortStudentAsc()
-    //     {
-    //         return $this->createQueryBuilder('student')
-    //             ->orderBy('student.id', 'ASC')
-    //             ->getQuery()
-    //             ->getResult()
-    //         ;
-    //     }
+
+        //     /**
+        //  * @return Book[]  
+        // */
+        // public function sortStudentAsc()
+        // {
+        //     return $this->createQueryBuilder('student')
+        //         ->orderBy('student.id', 'ASC')
+        //         ->getQuery()
+        //         ->getResult()
+        //     ;
+        // }
+
+        // /**
+        //  * @return Book[]  
+        // */
+        // public function sortStudentDESC()
+        // {
+        //     return $this->createQueryBuilder('student')
+        //         ->orderBy('student.id', 'DESC')
+        //         ->getQuery()
+        //         ->getResult()
+        //     ;
+        // }
+        
 
     /**
     * @return Student[]  

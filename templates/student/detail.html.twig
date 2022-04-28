@@ -17,29 +17,24 @@
                 {% endif %}
             </h5>
 
-            {# <h5 class="text-warning">Class: 
-                {% if student.class != null %}
-                <a class="text text-success" href="{{ path('course_detail' , {'id' : student.course.id})}}">
-                    {{ student.course.name }}
-                </a>             
-                {% endif %}
-            </h5> #}
-
             <h5 class="text-secondary">Phone: {{ student.phone}}</h5>
             <h5 class="text-secondary">Email: {{ student.email }}</h5>
 
-            {% if student.marks != null %}
-                {% for mark in student.marks %}
-                <p class="text text-success" href="{{ path('mark_detail' , {'id' : mark.id })}}"> 
-                    {% if mark.subject != null %}
-                    <h6 href="{{path('subject_detail', {'id': mark.subject.id})}}">{{mark.subject.name}}</h6>
-                    {% endif %} 
-                    <h5>Assignment 1: {{ mark.assignment1 }} </h5>
-                    <h5>Assignment 2: {{ mark.assignment2 }} </h5>
-                </p>
-                <br>           
-                {% endfor %}
-            {% endif %}
+            <h5>
+                {% if student.marks != null %}
+                    {% for mark in student.marks %}
+                    {# <p class="text text-success" href="{{ path('mark_detail' , {'id' : mark.id })}}">  #}
+                        {% if mark.subject != null %}
+                        <h5 class="text text-success" href="{{path('subject_detail', {'id': mark.subject.id})}}">Subject: {{mark.subject.name}}</h5>
+                        {% endif %} 
+                        <h6>Assignment 1: {{ mark.assignment1 }} </h6>
+                        <h6>Assignment 2: {{ mark.assignment2 }} </h6>
+                    </p>
+                    <br>           
+                    {% endfor %}
+                {% endif %}
+            </h5>
+
 
 
         </div>
