@@ -63,6 +63,19 @@ class ClassroomRepository extends ServiceEntityRepository
         ;
     }
     */
+    /**
+    * @return Student[]  
+    */
+    public function search ($keyword)
+    {
+        return $this->createQueryBuilder('student')
+            ->andWhere('student.name LIKE :key')
+            ->setParameter('key', '%' . $keyword . '%')
+            ->orderBy('student.name', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
     /*
     public function findOneBySomeField($value): ?Classroom

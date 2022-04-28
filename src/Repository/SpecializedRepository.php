@@ -75,4 +75,18 @@ class SpecializedRepository extends ServiceEntityRepository
         ;
     }
     */
+    /**
+    * @return Specialize[] 
+    */
+    public function search($keyword)
+    {
+        return $this->createQueryBuilder('specialize')
+            ->andWhere('specialize.name LIKE :key')
+            ->setParameter('key','%'. $keyword.'%')
+            ->orderBy('specialize.name', 'ASC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

@@ -27,17 +27,11 @@ class Course
     #[ORM\Column(type: 'string', length: 255)]
     private $description;
 
-    
-
-    #[ORM\OneToMany(mappedBy: 'course', targetEntity: Classroom::class)]
-    private $classrooms;
-
     #[ORM\OneToMany(mappedBy: 'course', targetEntity: Student::class)]
     private $students;
 
     public function __construct()
     {
-        $this->classrooms = new ArrayCollection();
         $this->students = new ArrayCollection();
     }
 
@@ -94,35 +88,6 @@ class Course
         return $this;
     }
 
-    /**
-     * @return Collection<int, Classroom>
-     */
-    public function getClassrooms(): Collection
-    {
-        return $this->classrooms;
-    }
-
-    public function addClassroom(Classroom $classroom): self
-    {
-        if (!$this->classrooms->contains($classroom)) {
-            $this->classrooms[] = $classroom;
-            $classroom->setCourse($this);
-        }
-
-        return $this;
-    }
-
-    public function removeClassroom(Classroom $classroom): self
-    {
-        if ($this->classrooms->removeElement($classroom)) {
-            // set the owning side to null (unless already changed)
-            if ($classroom->getCourse() === $this) {
-                $classroom->setCourse(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Student>

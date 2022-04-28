@@ -42,10 +42,14 @@ class Student
     #[ORM\ManyToOne(targetEntity: Course::class, inversedBy: 'students')]
     private $course;
 
+    #[ORM\ManyToMany(targetEntity: Classroom::class, mappedBy: 'student')]
+    private $classrooms;
+
 
     public function __construct()
     {
         $this->marks = new ArrayCollection();
+        $this->classrooms = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -175,6 +179,33 @@ class Student
     public function setCourse(?Course $course): self
     {
         $this->course = $course;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Classroom>
+     */
+    public function getClassrooms(): Collection
+    {
+        return $this->classrooms;
+    }
+
+    public function addClassroom(Classroom $classroom): self
+    {
+        if (!$this->classrooms->contains($classroom)) {
+            $this->classrooms[] = $classroom;
+            $classroom->addStudent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeClassroom(Classroom $classroom): self
+    {
+        if ($this->classrooms->removeElement($classroom)) {
+            $classroom->removeStudent($this);
+        }
 
         return $this;
     }

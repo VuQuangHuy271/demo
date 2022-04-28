@@ -2,10 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\SubjectRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Mark;
+use App\Entity\Teacher;
+use App\Entity\Classroom;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\SubjectRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: SubjectRepository::class)]
 class Subject
@@ -30,9 +33,13 @@ class Subject
     #[ORM\Column(type: 'string', length: 255)]
     private $image;
 
+    #[ORM\OneToMany(mappedBy: 'subject', targetEntity: Classroom::class)]
+    private $classroom;
+
     public function __construct()
     {
         $this->marks = new ArrayCollection();
+        $this->classroom = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -114,6 +121,35 @@ class Subject
             }
         }
 
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Classroom>
+     */
+    public function getClassroom(): Collection
+    {
+        return $this->classroom;
+    }
+
+    public function addClassroom(Classroom $classroom): self
+    {
+        if (!$this->classroom->contains($classroom)) {
+            $this->classroom[] = $classroom;
+            $classroom -> setSubject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeClassroom(Classroom $classroom): self
+    {
+        if ($this->classroom->removeElement($classroom)) {
+            // set the owning side to null (unless already changed)
+            if ($classroom->getSubject() === $this) {
+                $classroom->setSubject(null);
+            }
+        }
         return $this;
     }
 

@@ -2,8 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\ClassroomRepository;
+use App\Entity\Student;
+use App\Entity\Subject;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ClassroomRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: ClassroomRepository::class)]
 class Classroom
@@ -16,9 +20,16 @@ class Classroom
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
+    #[ORM\ManyToOne(targetEntity: Subject::class, inversedBy: 'classroom')]
+    private $subject;
 
-    #[ORM\ManyToOne(targetEntity: Course::class, inversedBy: 'classrooms')]
-    private $course;
+    #[ORM\ManyToMany(targetEntity: Student::class, inversedBy: 'classrooms')]
+    private $student;
+
+    public function __construct()
+    {
+        $this->student = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -37,14 +48,40 @@ class Classroom
         return $this;
     }
 
-    public function getCourse(): ?Course
+
+    public function getSubject(): ?Subject
     {
-        return $this->course;
+        return $this->subject;
     }
 
-    public function setCourse(?Course $course): self
+    public function setSubject(?Subject $subject): self
     {
-        $this->course = $course;
+        $this->subject = $subject;
+
+        return $this;
+    }
+
+
+    /**
+     * @return Collection<int, student>
+     */
+    public function getStudent(): Collection
+    {
+        return $this->student;
+    }
+
+    public function addStudent(student $student): self
+    {
+        if (!$this->student->contains($student)) {
+            $this->student[] = $student;
+        }
+
+        return $this;
+    }
+
+    public function removeStudent(student $student): self
+    {
+        $this->student->removeElement($student);
 
         return $this;
     }

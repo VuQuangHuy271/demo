@@ -10,12 +10,12 @@ class CourseFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        for($i = 0; $i <10; $i++){
+        for($i = 1; $i <= 10; $i++){
             $course = new Course();
-            $course-> setName("CNTT $i");
+            $course-> setName("course $i");
             $course-> setDateStart(\DateTime::createFromFormat('Y-m-d','2022-02-08'));
             $course-> setDateEnd(\DateTime::createFromFormat('Y-m-d','2022-08-08'));
-            $course-> setDescription("Cong Nghe Thong Tin $i");
+            $course-> setDescription("Description $i");
             $manager->persist($course);
         }
 

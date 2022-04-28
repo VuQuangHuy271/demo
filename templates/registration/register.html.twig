@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-
+{% form_theme registrationForm 'Bootstrap_5_layout.html.twig' %}
 {% block title %}Register{% endblock %}
 
 {% block body %}
@@ -12,6 +12,6 @@
         }) }}
         {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn">Register</button>
+        <button type="submit" class="btn btn-success">Register</button>
     {{ form_end(registrationForm) }}
 {% endblock %}
